@@ -1,0 +1,2 @@
+streamli
+google-generativeai
