@@ -11,12 +11,16 @@ genai.configure(api_key=GOOGLE_API_KEY)
 # Initialize generative AI model
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-# Function to get response from model
+# Function to get response from the model
 def get_response(prompt):
-    response = model.generate_content(prompt)
-    return response.text
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+        return "Sorry, I couldn't process that request."
 
-# Streamlit interface
+# Streamlit interface setup
 st.set_page_config(page_title="Simple ChatBot!", layout='centered')
 st.title("Chat-Bot")
 st.write("Powered by Google.")
